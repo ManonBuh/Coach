@@ -6,7 +6,7 @@ import com.example.coach.model.Profil;
 public class CalculPresenter {
 
     // Référence vers la vue via le contrat
-    private ICalculView vue;
+    private final ICalculView vue;
 
     // Constructeur : on reçoit la vue et on la stocke
     public CalculPresenter(ICalculView vue) {

@@ -18,7 +18,6 @@ import com.example.coach.presenter.CalculPresenter;
 public class MainActivity extends AppCompatActivity implements ICalculView {
 
     private RadioButton rdHomme;
-    private RadioButton rdFemme;
     private EditText txtPoids;
     private EditText txtTaille;
     private EditText txtAge;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     // Cette méthode relie les variables Java aux objets du XML
     private void chargeObjetsGraphiques() {
         rdHomme = findViewById(R.id.rdHomme);
-        rdFemme = findViewById(R.id.rdFemme);
         txtPoids = findViewById(R.id.txtPoids);
         txtTaille = findViewById(R.id.txtTaille);
         txtAge = findViewById(R.id.txtAge);
@@ -58,10 +56,10 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     private void btnCalc_clic() {
 
         // Valeurs par défaut
-        Integer poids = 0;
-        Integer taille = 0;
-        Integer age = 0;
-        Integer sexe = 0; // 0 = femme par défaut
+        int poids = 0;
+        int taille = 0;
+        int age = 0;
+        int sexe = 0; // 0 = femme par défaut
 
         // On essaie de récupérer et convertir les valeurs saisies
         try {
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
         }
 
         // Construction du texte à afficher
-        String texte = String.format("%.01f", img) + " : IMG " + message;
+        String texte = String.format(java.util.Locale.getDefault(), "%.01f", img) + " : IMG " + message;
 
         // Affichage du texte
         lblResultat.setText(texte);

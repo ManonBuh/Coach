@@ -23,17 +23,17 @@ public class Profil {
 
     // === Propriétés ===
     // Données saisies par l'utilisateur
-    private Integer poids;   // poids en kg
-    private Integer taille;  // taille en cm
-    private Integer age;     // âge en années
-    private Integer sexe;    // 0 = femme, 1 = homme
+    private final Integer poids;   // poids en kg
+    private final Integer taille;  // taille en cm
+    private final Integer age;     // âge en années
+    private final Integer sexe;    // 0 = femme, 1 = homme
 
     // Résultat du calcul
-    private double img;      // valeur de l'IMG calculé
+    private final double img;      // valeur de l'IMG calculé
 
     // Indice pour savoir quel message/image utiliser
     // 0 = trop faible, 1 = normal, 2 = trop élevé
-    private int indice;
+    private final int indice;
 
     // === Constructeur ===
     public Profil(Integer poids, Integer taille, Integer age, Integer sexe) {
@@ -58,13 +58,10 @@ public class Profil {
         double tailleMetre = taille / 100.0;
 
         // Formule IMG
-        double resultat = (1.2 * poids / (tailleMetre * tailleMetre))
+        return (1.2 * poids / (tailleMetre * tailleMetre))
                 + (0.23 * age)
                 - (10.83 * sexe)
                 - 5.4;
-
-        // retourne résultat
-        return resultat;
     }
 
     // === CALCUL INDICE ===
