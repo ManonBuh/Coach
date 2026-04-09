@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.example.coach.presenter","l":"CalculPresenter"},{"p":"com.example.coach.contract","l":"ICalculView"},{"p":"com.example.coach.view","l":"MainActivity"},{"p":"com.example.coach.model","l":"Profil"}];updateSearchResults();

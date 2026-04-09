@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.coach.contract"},{"l":"com.example.coach.model"},{"l":"com.example.coach.presenter"},{"l":"com.example.coach.view"}];updateSearchResults();
