@@ -17,6 +17,7 @@ import com.example.coach.presenter.CalculPresenter;
 
 public class MainActivity extends AppCompatActivity implements ICalculView {
 
+    private RadioButton rdFemme;
     private RadioButton rdHomme;
     private EditText txtPoids;
     private EditText txtTaille;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
 
     // Cette méthode relie les variables Java aux objets du XML
     private void chargeObjetsGraphiques() {
+        rdFemme = findViewById(R.id.rdFemme);
         rdHomme = findViewById(R.id.rdHomme);
         txtPoids = findViewById(R.id.txtPoids);
         txtTaille = findViewById(R.id.txtTaille);
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     // Initialise l'écran au démarrage
     private void init() {
         chargeObjetsGraphiques();
-        presenter = new CalculPresenter(this);
+        presenter = new CalculPresenter(this, this);
+        presenter.chargerProfil();
         btnCalc.setOnClickListener(v -> btnCalc_clic());
     }
 
@@ -111,4 +114,19 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
         }
     }
 
+    @Override
+    public void remplirChamps(Integer poids, Integer taille, Integer age, Integer sexe) {
+
+        // Remplit les champs texte
+        txtPoids.setText(poids.toString());
+        txtTaille.setText(taille.toString());
+        txtAge.setText(age.toString());
+
+        // Gère le sexe
+        if (sexe == 1) {
+            rdHomme.setChecked(true);
+        } else {
+            rdFemme.setChecked(true);
+        }
+    }
 }

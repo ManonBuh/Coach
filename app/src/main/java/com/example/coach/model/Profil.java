@@ -112,4 +112,26 @@ public class Profil {
         return indice == 1;
     }
 
+    // === GETTERS DONNÉES SAISIES ===
+
+    // Retourne le poids
+    public Integer getPoids() {
+        return poids;
+    }
+
+    // Retourne la taille
+    public Integer getTaille() {
+        return taille;
+    }
+
+    // Retourne l'âge
+    public Integer getAge() {
+        return age;
+    }
+
+    // Retourne le sexe (0 = femme, 1 = homme)
+    public Integer getSexe() {
+        return sexe;
+    }
+
 }
