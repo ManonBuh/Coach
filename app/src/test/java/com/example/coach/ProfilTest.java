@@ -4,12 +4,13 @@ import com.example.coach.model.Profil;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Date;
 
 public class ProfilTest {
 
-    private final Profil profilMaigre = new Profil(45, 170, 20, 0);
-    private final Profil profilNormal = new Profil(70, 180, 40, 1);
-    private final Profil profilGras = new Profil(67, 165, 35, 0);
+    private final Profil profilMaigre = new Profil(45, 170, 20, 0, new Date());
+    private final Profil profilNormal = new Profil(70, 180, 40, 1, new Date());
+    private final Profil profilGras = new Profil(67, 165, 35, 0, new Date());
 
     @Test
     public void testGetMessage() {

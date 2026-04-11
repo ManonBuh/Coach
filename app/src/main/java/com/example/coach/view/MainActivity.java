@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     private void init() {
         chargeObjetsGraphiques();
         presenter = new CalculPresenter(this, this);
-        presenter.chargerProfil();
+        presenter.chargerDernierProfil();
         btnCalc.setOnClickListener(v -> btnCalc_clic());
     }
 
@@ -90,23 +90,27 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     @Override
     public void afficherResultat(String image, double img, String message, boolean normal) {
 
-        // On récupère l'id de l'image à partir de son nom
-        int imageId = getResources().getIdentifier(image, "drawable", getPackageName());
-
-        // Si l'image n'est pas trouvée, on affiche l'image "normal" par défaut
-        if (imageId == 0) {
-            imgSmiley.setImageResource(R.drawable.normal);
+        // Affiche l'image en fonction du nom reçu depuis le modèle (Profil)
+        // On évite getIdentifier (moins performant)
+        if ("maigre".equals(image)) {
+            imgSmiley.setImageResource(R.drawable.maigre);
+        } else if ("graisse".equals(image)) {
+            imgSmiley.setImageResource(R.drawable.graisse);
         } else {
-            imgSmiley.setImageResource(imageId);
+            // Par défaut (normal)
+            imgSmiley.setImageResource(R.drawable.normal);
         }
 
-        // Construction du texte à afficher
-        String texte = String.format(java.util.Locale.getDefault(), "%.01f", img) + " : IMG " + message;
+        // Construction du texte à afficher (IMG + message)
+        // Exemple : "18.9 : IMG normal"
+        String texte = String.format(java.util.Locale.getDefault(), "%.01f", img)
+                + " : IMG " + message;
 
-        // Affichage du texte
+        // Affichage du texte dans le label
         lblResultat.setText(texte);
 
-        // Couleur du texte : vert si normal, rouge sinon
+        // Couleur du texte :
+        // vert si l'IMG est normal, rouge sinon
         if (normal) {
             lblResultat.setTextColor(Color.GREEN);
         } else {
@@ -118,9 +122,9 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     public void remplirChamps(Integer poids, Integer taille, Integer age, Integer sexe) {
 
         // Remplit les champs texte
-        txtPoids.setText(poids.toString());
-        txtTaille.setText(taille.toString());
-        txtAge.setText(age.toString());
+        txtPoids.setText(String.format(java.util.Locale.getDefault(), "%d", poids));
+        txtTaille.setText(String.format(java.util.Locale.getDefault(), "%d", taille));
+        txtAge.setText(String.format(java.util.Locale.getDefault(), "%d", age));
 
         // Gère le sexe
         if (sexe == 1) {
