@@ -1,5 +1,7 @@
 package com.example.coach.model;
 
+import java.util.Date;
+
 public class Profil {
 
     // === Constantes ===
@@ -23,30 +25,28 @@ public class Profil {
 
     // === Propriétés ===
     // Données saisies par l'utilisateur
-    private final Integer poids;   // poids en kg
+    private final Integer poids;   // en kg
     private final Integer taille;  // taille en cm
-    private final Integer age;     // âge en années
+    private final Integer age;
     private final Integer sexe;    // 0 = femme, 1 = homme
-
     // Résultat du calcul
-    private final double img;      // valeur de l'IMG calculé
-
+    private transient double img;      // valeur de l'IMG calculé
+    private final Date dateMesure;
     // Indice pour savoir quel message/image utiliser
     // 0 = trop faible, 1 = normal, 2 = trop élevé
-    private final int indice;
+    private transient int indice;
 
     // === Constructeur ===
-    public Profil(Integer poids, Integer taille, Integer age, Integer sexe) {
+    public Profil(Integer poids, Integer taille, Integer age, Integer sexe, Date dateMesure) {
 
         // récupère les valeurs saisies
         this.poids = poids;
         this.taille = taille;
         this.age = age;
         this.sexe = sexe;
-
         // calcule l'IMG automatiquement
         this.img = calculImg();
-
+        this.dateMesure = dateMesure;
         // On détermine l'indice (faible / normal / élevé)
         this.indice = calculIndice();
     }
@@ -132,6 +132,10 @@ public class Profil {
     // Retourne le sexe (0 = femme, 1 = homme)
     public Integer getSexe() {
         return sexe;
+    }
+
+    public Date getDateMesure() {
+        return dateMesure;
     }
 
 }
