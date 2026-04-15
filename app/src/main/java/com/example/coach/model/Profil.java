@@ -1,8 +1,9 @@
 package com.example.coach.model;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class Profil {
+public class Profil implements Serializable {
 
     // === Constantes ===
     // Seuils IMG pour une femme
@@ -30,11 +31,11 @@ public class Profil {
     private final Integer age;
     private final Integer sexe;    // 0 = femme, 1 = homme
     // Résultat du calcul
-    private transient double img;      // valeur de l'IMG calculé
+    private final transient double img;      // valeur de l'IMG calculé
     private final Date dateMesure;
     // Indice pour savoir quel message/image utiliser
     // 0 = trop faible, 1 = normal, 2 = trop élevé
-    private transient int indice;
+    private final transient int indice;
 
     // === Constructeur ===
     public Profil(Integer poids, Integer taille, Integer age, Integer sexe, Date dateMesure) {
@@ -93,7 +94,7 @@ public class Profil {
     // === GETTERS ET MÉTHODES PUBLIQUES ===
     // Retourne la valeur de l'IMG calculé
     public double getImg() {
-        return img;
+        return calculImg();
     }
 
     // Retourne le message correspondant à l'indice

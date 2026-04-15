@@ -15,11 +15,11 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import com.example.coach.R;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class CalculActivityTest {
 
     @Rule
-    public ActivityScenarioRule<MainActivity> activityRule =
-            new ActivityScenarioRule<>(MainActivity.class);
+    public ActivityScenarioRule<CalculActivity> activityRule =
+            new ActivityScenarioRule<>(CalculActivity.class);
 
     @Test
     public void testCalculIMG() {

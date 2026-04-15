@@ -14,8 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.coach.R;
 import com.example.coach.contract.ICalculView;
 import com.example.coach.presenter.CalculPresenter;
+import com.example.coach.model.Profil;
 
-public class MainActivity extends AppCompatActivity implements ICalculView {
+public class CalculActivity extends AppCompatActivity implements ICalculView {
 
     private RadioButton rdFemme;
     private RadioButton rdHomme;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calcul);
         init();
     }
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     private void init() {
         chargeObjetsGraphiques();
         presenter = new CalculPresenter(this, this);
-        presenter.chargerDernierProfil();
+        recupProfil();
         btnCalc.setOnClickListener(v -> btnCalc_clic());
     }
 
@@ -127,6 +128,26 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
             rdHomme.setChecked(true);
         } else {
             rdFemme.setChecked(true);
+        }
+    }
+
+    // Récupère un profil envoyé depuis l'historique
+    private void recupProfil() {
+
+        Profil profil = (Profil) getIntent().getSerializableExtra("profil");
+
+        if (profil != null) {
+
+            remplirChamps(
+                    profil.getPoids(),
+                    profil.getTaille(),
+                    profil.getAge(),
+                    profil.getSexe()
+            );
+
+        } else {
+            // sinon on charge le dernier profil
+            presenter.chargerDernierProfil();
         }
     }
 }
